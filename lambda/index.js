@@ -5,11 +5,12 @@ const Alexa = require("ask-sdk-core");
 
 const rp = require("request-promise-native");
 
-async function getData() {
-  var options = {
-    uri: `https://api.spoonacular.com/recipes/findByNutrients?minCarbs=10&maxCarbs=50&number=1&apiKey=dce5c0d84f274548a3edb7a7b661c3de`,
-    json: true,
-  };
+async function getData(maxcalories, mincalories) {
+  if (maxcalories > mincalories)
+    var options = {
+      uri: `https://api.spoonacular.com/recipes/findByNutrients?minCalories=${mincalories}&maxCalories=${maxcalories}&number=1&apiKey=dce5c0d84f274548a3edb7a7b661c3de`,
+      json: true,
+    };
 
   var response = await rp(options);
   return response;
@@ -58,8 +59,10 @@ const InputConstraintsIntentHandler = {
     );
   },
   async handle(handlerInput) {
+    const maxcalories = handlerInput.request.intent.slots.maxcalories.value;
+    const mincalories = handlerInput.request.intent.slots.mincalories.value;
     let speakOutput = "";
-    await getData()
+    await getData(maxcalories, mincalories)
       .then((response) => {
         console.log("In here", response);
         speakOutput = `I found ${response[0]["title"]} that will give you ${response[0]["calories"]} calories.`;
