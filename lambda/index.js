@@ -64,12 +64,14 @@ const InputConstraintsIntentHandler = {
       .then((response) => {
         console.log(response.data);
         speakOutput = `I found ${response.data[0]["title"]} that will give you ${response.data[0]["calories"]} calories.`;
+         return handlerInput.responseBuilder.speak(speakOutput).getResponse();
       })
       .catch((err) => {
         console.log(err);
         speakOutput = `Sorry, I was not able to retrieve your meals. Please try again.`;
+         return handlerInput.responseBuilder.speak(speakOutput).getResponse();
       });
-    return handlerInput.responseBuilder.speak(speakOutput).getResponse();
+   
   },
 };
 
