@@ -50,17 +50,14 @@ const InputConstraintsIntentHandler = {
     // CALL THE API HERE AND RETURN THE RESULTS IN THE REPONSE
 
     // make a sample call
-    let speakOutput = ``;
+    let speakOutput = `Searching...`;
     axios
       .get(
         "https://api.spoonacular.com/recipes/findByNutrients?minCarbs=10&maxCarbs=50&number=1&apiKey=dce5c0d84f274548a3edb7a7b661c3de"
       )
       .then((response) => {
-        console.log(response);
-      })
-      .then((response) => {
-        console.log(response);
-        speakOutput = response[0]["title"];
+        console.log(response.data);
+        speakOutput = `I found ${response.data[0]["title"]} that will give you ${response.data[0]["calories"]} calories.`;
       })
       .catch((err) => {
         console.log(err);
