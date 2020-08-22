@@ -62,6 +62,11 @@ const InputConstraintsIntentHandler = {
         console.log(response);
         speakOutput = response[0]["title"];
         return handlerInput.responseBuilder.speak(speakOutput).getResponse();
+      })
+      .catch((err) => {
+        console.log(err);
+        speakOutput = `Sorry, I was not able to retrieve your meals. Please try again.`;
+        return handlerInput.responseBuilder.speak(speakOutput).getResponse();
       });
   },
 };
@@ -158,7 +163,7 @@ exports.handler = Alexa.SkillBuilders.custom()
   .addRequestHandlers(
     LaunchRequestHandler,
     HelloWorldIntentHandler,
-    InputConstraintsIntentHandler
+    InputConstraintsIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
