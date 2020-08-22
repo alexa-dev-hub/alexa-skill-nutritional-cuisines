@@ -1,0 +1,35 @@
+{
+  "manifest": {
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:022235196353:function:b486c008-ac9c-41e3-a102-b1f12e3ea67b:Release_0"
+        },
+        "regions": {
+          "EU": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:eu-west-1:022235196353:function:b486c008-ac9c-41e3-a102-b1f12e3ea67b:Release_0"
+            }
+          },
+          "NA": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:us-east-1:022235196353:function:b486c008-ac9c-41e3-a102-b1f12e3ea67b:Release_0"
+            }
+          },
+          "FE": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:us-west-2:022235196353:function:b486c008-ac9c-41e3-a102-b1f12e3ea67b:Release_0"
+            }
+          }
+        }
+      }
+    },
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "name": "nutritional-cuisines"
+        }
+      }
+    }
+  }
+}
