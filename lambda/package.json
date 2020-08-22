@@ -12,6 +12,8 @@
     "ask-sdk-core": "^2.6.0",
     "ask-sdk-model": "^1.18.0",
     "aws-sdk": "^2.326.0",
-    "axios": "^0.20.0"
+    "axios": "^0.20.0",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.9"
   }
 }
