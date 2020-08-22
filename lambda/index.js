@@ -2,18 +2,18 @@
 // Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
 // session persistence, api calls, and more.
 const Alexa = require("ask-sdk-core");
-const axios = require("axios");
 
-const callAPI = async () => {
-  try {
-    const response = await axios.get(
-      `https://api.spoonacular.com/recipes/findByNutrients?minCarbs=10&maxCarbs=50&number=1&apiKey=dce5c0d84f274548a3edb7a7b661c3de`
-    );
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+const rp = require("request-promise-native");
+
+async function getData() {
+  var options = {
+    uri: `https://api.spoonacular.com/recipes/findByNutrients?minCarbs=10&maxCarbs=50&number=1&apiKey=dce5c0d84f274548a3edb7a7b661c3de`,
+    json: true,
+  };
+
+  var response = await rp(options);
+  return response;
+}
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
@@ -58,10 +58,11 @@ const InputConstraintsIntentHandler = {
     );
   },
   async handle(handlerInput) {
-    let speakOutput = ``;
-    const responseData = await callAPI()
+    let speakOutput = "";
+    const data = getData();
+    await data
       .then((response) => {
-        console.log(response.data);
+        console.log("Inhere", response.data[0]);
         speakOutput = `I found ${response.data[0]["title"]} that will give you ${response.data[0]["calories"]} calories.`;
       })
       .catch((err) => {
