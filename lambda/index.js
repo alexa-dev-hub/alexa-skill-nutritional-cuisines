@@ -62,7 +62,7 @@ const InputConstraintsIntentHandler = {
     await getData()
       .then((response) => {
         console.log("In here", response);
-        speakOutput = `I found ${response.data[0]["title"]} that will give you ${response.data[0]["calories"]} calories.`;
+        speakOutput = `I found ${response[0]["title"]} that will give you ${response[0]["calories"]} calories.`;
       })
       .catch((err) => {
         console.log(err);
