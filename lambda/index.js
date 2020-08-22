@@ -59,7 +59,7 @@ const InputConstraintsIntentHandler = {
     );
   },
   async handle(handlerInput) {
-    const maxcalories = handlerInput.request.intent.slots.maxcalories.value;
+    const maxcalories = handlerInput.requestEnvelope.request.intent.slots.maxcalories.value;
     let speakOutput = "";
     await getData(maxcalories)
       .then((response) => {
