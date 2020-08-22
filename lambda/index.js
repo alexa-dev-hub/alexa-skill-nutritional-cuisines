@@ -2,6 +2,7 @@
 // Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
 // session persistence, api calls, and more.
 const Alexa = require("ask-sdk-core");
+const axios = require("axios");
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
@@ -11,7 +12,7 @@ const LaunchRequestHandler = {
   },
   handle(handlerInput) {
     const speakOutput =
-      "Welcome to nutritional cuisines. You can ask about a meal with nutritional contraints. For example, you can say give me a meal with max carbs of 50 gram and min carbs of 10 gram";
+      "Welcome to nutritional cuisines. You can ask about a meal with nutritional constraints. For example, you can say give me a meal with max carbs of 50 gram and min carbs of 10 gram";
     return handlerInput.responseBuilder
       .speak(speakOutput)
       .reprompt(speakOutput)
@@ -27,7 +28,7 @@ const HelloWorldIntentHandler = {
   },
   handle(handlerInput) {
     const speakOutput =
-      "Hello, You can ask me about a meal with nutritional contraints. For example, you can say give me a meal with max carbs of 50 gram and min carbs of 10 gram!";
+      "Hello, You can ask me about a meal with nutritional constraints. For example, you can say give me a meal with max carbs of 50 gram and min carbs of 10 gram!";
     return (
       handlerInput.responseBuilder
         .speak(speakOutput)
@@ -36,6 +37,39 @@ const HelloWorldIntentHandler = {
     );
   },
 };
+
+const InputConstraintsIntentHandler = {
+  canHandle(handlerInput) {
+    return (
+      Alexa.getRequestType(handlerInput.requestEnvelope) === "IntentRequest" &&
+      Alexa.getIntentName(handlerInput.requestEnvelope) ===
+        "InputConstraintsIntent"
+    );
+  },
+  handle(handlerInput) {
+    // CALL THE API HERE AND RETURN THE RESULTS IN THE REPONSE
+
+    // make a sample call
+    let speakOutput = ``;
+    axios
+      .get(
+        "https://api.spoonacular.com/recipes/findByNutrients?minCarbs=10&maxCarbs=50&number=1&apiKey=dce5c0d84f274548a3edb7a7b661c3de"
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .then((response) => {
+        console.log(response);
+        speakOutput = response[0]["title"];
+      });
+
+    return handlerInput.responseBuilder
+      .speak(speakOutput)
+
+      .getResponse();
+  },
+};
+
 const HelpIntentHandler = {
   canHandle(handlerInput) {
     return (
