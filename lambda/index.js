@@ -61,12 +61,8 @@ const InputConstraintsIntentHandler = {
       .then((response) => {
         console.log(response);
         speakOutput = response[0]["title"];
+        return handlerInput.responseBuilder.speak(speakOutput).getResponse();
       });
-
-    return handlerInput.responseBuilder
-      .speak(speakOutput)
-
-      .getResponse();
   },
 };
 
