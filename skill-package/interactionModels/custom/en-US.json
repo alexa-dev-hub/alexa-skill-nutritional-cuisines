@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "change me",
+      "invocationName": "nutri meals",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -31,10 +31,56 @@
         {
           "name": "AMAZON.NavigateHomeIntent",
           "samples": []
+        },
+        {
+          "name": "InputConstraintsIntent",
+          "slots": [
+            {
+              "name": "mincarbs",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "mincalories",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "maxfats",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "minprotein",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "maxprotein",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "minfats",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "maxcarbs",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "maxcalories",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "a dish that gives me {maxcalories} calories",
+            "give a meal that maximum fats of {minfats} ",
+            "a meal with {maxprotein} gram maximum protein",
+            "a meal with {minprotein}  gram minimum protein ",
+            "i want something with max fats of {maxfats} gram",
+            "give me a meal with min calories of {mincalories}",
+            "give me a meal with maxcarbs of {maxcarbs} gram"
+          ]
         }
       ],
       "types": []
     }
   },
-  "version": "1"
+  "version": "5"
 }

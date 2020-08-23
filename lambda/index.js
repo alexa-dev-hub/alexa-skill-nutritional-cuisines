@@ -7,7 +7,7 @@ const rp = require("request-promise-native");
 
 async function getData(maxcalories) {
   var options = {
-    uri: `https://api.spoonacular.com/recipes/findByNutrients?minCalories=10&maxCalories=${maxcalories}&number=1&apiKey=dce5c0d84f274548a3edb7a7b661c3de`,
+    uri: `https://api.spoonacular.com/recipes/findByNutrients?minCalories=10&maxCalories=${maxcalories}&number=1&apiKey=${API_KEY_HERE}`,
     json: true,
   };
 
