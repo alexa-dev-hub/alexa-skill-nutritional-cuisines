@@ -6,11 +6,10 @@ const Alexa = require("ask-sdk-core");
 const rp = require("request-promise-native");
 
 async function getData(maxcalories) {
-  
-    var options = {
-      uri: `https://api.spoonacular.com/recipes/findByNutrients?minCalories=10&maxCalories=${maxcalories}&number=1&apiKey=dce5c0d84f274548a3edb7a7b661c3de`,
-      json: true,
-    };
+  var options = {
+    uri: `https://api.spoonacular.com/recipes/findByNutrients?minCalories=10&maxCalories=${maxcalories}&number=1&apiKey=dce5c0d84f274548a3edb7a7b661c3de`,
+    json: true,
+  };
 
   var response = await rp(options);
   return response;
@@ -59,7 +58,8 @@ const InputConstraintsIntentHandler = {
     );
   },
   async handle(handlerInput) {
-    const maxcalories = handlerInput.requestEnvelope.request.intent.slots.maxcalories.value;
+    const maxcalories =
+      handlerInput.requestEnvelope.request.intent.slots.maxcalories.value;
     let speakOutput = "";
     await getData(maxcalories)
       .then((response) => {
@@ -82,7 +82,8 @@ const HelpIntentHandler = {
     );
   },
   handle(handlerInput) {
-    const speakOutput = "You can say hello to me! How can I help?";
+    const speakOutput =
+      "You can ask me about, meals that have some amount of calories, carbs, fats etc. How can I help?";
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
