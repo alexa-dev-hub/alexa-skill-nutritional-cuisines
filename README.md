@@ -1,4 +1,4 @@
-<img src = "amazon-alexa-vector-logo.png">
+<img src = "https://github.com/priyanshsingh/alexa-skill-nutritional-cuisines/blob/master/amazon-alexa-vector-logo.jpg"/>
 # Alexa Skill - Nutritional Cuisines
 
 ## What is the skill doing? :thinking:
